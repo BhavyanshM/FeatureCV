@@ -8,7 +8,7 @@ chess_image = "C:\\DataBM\\Drive_BackUp\\Research\\Robotics\\AlphaPilot\\Code\\I
 
 print(len(images))
 
-i = 100
+i = 1000
 while True:
 	img = cv2.imread(images[i], 0)
 	gate = cv2.imread(chess_image, 0)
