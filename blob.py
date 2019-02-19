@@ -2,7 +2,8 @@ import cv2
 import numpy as np
 import glob
 
-images = glob.glob("C:\\DataBM\\Drive_BackUp\\Research\\Robotics\\AlphaPilot\\Code\\Images\\Data_Training\\Data_Training\\*.JPG")
+#images = glob.glob("C:\\DataBM\\Drive_BackUp\\Research\\Robotics\\AlphaPilot\\Code\\Images\\Data_Training\\Data_Training\\*.JPG")
+images = glob.glob("../../Downloads/Data_Training/*.JPG")
 
 print(len(images))
 
@@ -58,11 +59,11 @@ while True:
 	if code == ord('q'):
 		cv2.destroyAllWindows()
 		break
-	elif code == 2555904:
+	elif (code == 2555904 or code == 65363 or code == ord('a')):
 		i+=1
 		print("Going Right")
 		cv2.destroyAllWindows()
-	elif code == 2424832:
+	elif (code == 2424832 or code == 65361 or code == ord('f')):
 		if i>1: i-=1
 		print("Going Left")
 		cv2.destroyAllWindows()
