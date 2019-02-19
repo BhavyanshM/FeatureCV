@@ -22,10 +22,11 @@ while True:
 
 	# image, contours, hierarchy = cv2.findContours(canny,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
 	# cont = cv2.drawContours(frame, contours, -1, (0,255,0), 3)
-	cv2.namedWindow("Canny", cv2.WINDOW_NORMAL)
+
 	cv2.imshow('Canny', canny)
-	cv2.namedWindow("Contours", cv2.WINDOW_NORMAL)
-	cv2.imshow("Contours", frame)
+	# cv2.imshow('Frame', frame)
+	cv2.imshow('Gray', gray)
+	# cv2.imshow("Contours", cont)S
 	
 	# cv2.setMouseCallback('frame', click_pos)
 
