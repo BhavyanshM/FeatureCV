@@ -10,7 +10,7 @@ def click_pos(event, x, y, flags, param):
 		print(frame[y,x])
 
 #The camera
-cap = cv2.VideoCapture(1);
+cap = cv2.VideoCapture(0);
 
 while True:
 	# cap.set(cv2.CAP_PROP_AUTOFOCUS, 0)
