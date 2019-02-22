@@ -25,12 +25,12 @@ while True:
 	plotter(x, y, 
 		shift_x = 250, 
 		shift_y = 200, 
-		scale_x = 200, 
-		scale_y = 100, 
-		phase_x = 100, 
-		phase_y = 10, 
-		radius = 10, 
-		color = (0,0,255)
+		scale_x = abs(400*(cos(y))), 
+		scale_y = abs(400*(sin(x))), 
+		phase_x = abs(10*x), 
+		phase_y = abs(10*sin(x*y)), 
+		radius = 10 + int(5*(sin(x))), 
+		color = ((255*sin(y*2)),(255*sin(x-y)),(255*sin(x*x)))
 	)	
 
 	# a += 0.1
@@ -44,7 +44,7 @@ while True:
 
 	# cv2.circle(img,(200, 200), 63, (0,0,255), -1)
 	cv2.namedWindow("Draw", cv2.WINDOW_NORMAL)
-	cv2.resizeWindow('Draw', 1024,768)
+	cv2.resizeWindow('Draw', 512,512)
 	cv2.imshow('Draw', img)
 
 	time.sleep(0.01)
