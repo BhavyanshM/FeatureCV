@@ -5,7 +5,7 @@ from math import sin, cos, tan, ceil
 
 
 def plotter(x, y, shift_x, shift_y, scale_x, scale_y, phase_x, phase_y, radius, color):
-	del_x = shift_x + int(scale_x*(ceil(tan(x+phase_x))))
+	del_x = shift_x + int(scale_x*(sin(cos(x+phase_x))))
 	del_y = shift_y + int(scale_y*tan(cos(y+phase_y)))
 
 	print(del_x, del_y)
