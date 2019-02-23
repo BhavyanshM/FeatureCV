@@ -1,10 +1,31 @@
 Computer Vision and Graphics
 
 1. Tell me shapes:
+	- python3 draw.py
 	a. Circle
 
-2. Make some shapes:
+2. Make some shapes: 
 	a. Star
 	b. Pentagon
 	c. Square
 	d. Circle
+
+3. Detect the edges!
+	- python3 edges.py
+
+4. Detect the colors!
+	- python3 colors.py
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------
+Red: 142, 117, 097, 180, 253, 235
