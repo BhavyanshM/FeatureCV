@@ -9,6 +9,14 @@ def click_pos(event, x, y, flags, param):
 		mouseX, mouseY = x, y
 		print(frame[y,x])
 
+def detect_chess_corners(gray):
+	ret, corners = cv2.findChessboardCorners(gray, (6,7),None)
+	# If found, add object points, image points (after refining them)
+	if ret == True:
+		gray = cv2.drawChessboardCorners(gray, (6,7), corners,ret)
+
+	return ret, corners
+
 #The camera
 cap = cv2.VideoCapture(0);
 
@@ -18,14 +26,18 @@ while True:
 	ret, frame = cap.read()
 
 	gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
-	canny = cv2.Canny(gray,100,200)
+	
+	success, chess = detect_chess_corners(gray)
 
 	# image, contours, hierarchy = cv2.findContours(canny,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
 	# cont = cv2.drawContours(frame, contours, -1, (0,255,0), 3)
 
-	cv2.imshow('Canny', canny)
+	# cv2.imshow('Canny', canny)
 	# cv2.imshow('Frame', frame)
-	cv2.imshow('Gray', gray)
+	if success:
+		cv2.imshow('Chess', chess)
+	else:
+		cv2.imshow('Gray', gray)
 	# cv2.imshow("Contours", cont)S
 	
 	# cv2.setMouseCallback('frame', click_pos)

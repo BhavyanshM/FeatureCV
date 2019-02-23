@@ -14,19 +14,21 @@ cap = cv2.VideoCapture(1);
 
 # while True:
 	# cap.set(cv2.CAP_PROP_AUTOFOCUS, 0)
-global frame
+global gray
 # ret, frame = cap.read()
-gray = cv2.imread("Chess.png", cv2.IMREAD_GRAYSCALE)
+# gray = cv2.imread("Chess.png", cv2.IMREAD_GRAYSCALE)
 # gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
 
+return_val, gray = cap.read()
+
 # Find the chess board corners
-ret, corners = cv2.findChessboardCorners(gray, (3,3),None)
+# ret, corners = cv2.findChessboardCorners(gray, (6,7),None)
 
-# If found, add object points, image points (after refining them)
-if ret == True:
+# # If found, add object points, image points (after refining them)
+# if ret == True:
 
-    # Draw and display the corners
-    gray = cv2.drawChessboardCorners(gray, (3,3), corners,ret)
+#     # Draw and display the corners
+#     gray = cv2.drawChessboardCorners(gray, (6,7), corners,ret)
 
 cv2.namedWindow("Image", cv2.WINDOW_NORMAL)
 cv2.resizeWindow('Image', 1024,768)
