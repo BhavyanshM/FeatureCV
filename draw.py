@@ -30,34 +30,40 @@ dist = 3
 
 # Draw a diagonal blue line with thickness of 5 px
 while True:
-	# magic = {
-	# 	"shift_x":250,
-	# 	"shift_y":200,
-	# 	"scale_x":abs(400*(cos(y))),
-	# 	"scale_y":abs(400*(sin(x))),
-	# 	"phase_x":abs(10*x),
-	# 	"phase_y":abs(10*sin(x*y)),
-	# 	"radius": (50 + int(45*(sin(x)))),
-	# 	"color":((255*sin(y*2)),(255*sin(x-y)),(255*sin(x*x)))
-	# }
-	conics = {
-		"shift_x":400,
-		"shift_y":400,
-		"scale_x":200,
-		"scale_y":200,
-		"phase_x":0,
-		"phase_y":0,
-		"radius": int(sys.argv[2]) or 50,
-		"color":(0, 0, 255)
-	}
 	x += inc_x
 	y += inc_y
 
 	# print(x, y)
 	if(sys.argv[1] == 'conics'):
+		conics = {
+			"shift_x":400,
+			"shift_y":400,
+			"scale_x":200,
+			"scale_y":200,
+			"phase_x":0,
+			"phase_y":0,
+			"radius": int(sys.argv[2]) or 50,
+			"color":(0, 0, 255)
+		}
 		plotter(x, y, 
 			pattern = conics
 		)	
+	if(sys.argv[1] == 'magic'):
+		magic = {
+			"shift_x":250,
+			"shift_y":200,
+			"scale_x":abs(400*(cos(y))),
+			"scale_y":abs(400*(sin(x))),
+			"phase_x":abs(10*x),
+			"phase_y":abs(10*sin(x*y)),
+			"radius": (50 + int(45*(sin(x)))),
+			"color":((255*sin(y*2)),(255*sin(x-y)),(255*sin(x*x)))
+		}
+		
+		plotter(x, y, 
+			pattern = magic
+		)
+
 	if(sys.argv[1] == 'polygon'):
 		rem += 1
 		# print(angle)

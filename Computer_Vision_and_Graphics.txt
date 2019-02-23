@@ -1,19 +1,28 @@
 Computer Vision and Graphics
 
-1. Tell me shapes:
-	- python3 draw.py
-	a. Circle
+0. What is Computer Vision? What are Graphics?
 
-2. Make some shapes: 
+1. Tell me shapes:
+	- python3 draw.py conics 5
+	- python3 draw.py shapes 4
+	a. Circle
+	b. 
+	c. 
+
+3. Let's do some magic!
+	- python3 draw.py  
+
+3. Make some shapes: 
 	a. Star
 	b. Pentagon
 	c. Square
 	d. Circle
 
-3. Detect the edges!
+
+4. Detect the edges!
 	- python3 edges.py
 
-4. Detect the colors!
+5. Detect the colors!
 	- python3 colors.py
 
 
