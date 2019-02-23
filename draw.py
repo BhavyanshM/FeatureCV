@@ -1,12 +1,12 @@
 import numpy as np
 import cv2
 import time
-from math import sin, cos, tan, ceil
+from math import sin, cos, tan, ceil, floor
 
 
 def plotter(x, y, shift_x, shift_y, scale_x, scale_y, phase_x, phase_y, radius, color):
-	del_x = shift_x + int(scale_x*(sin(cos(x+phase_x))))
-	del_y = shift_y + int(scale_y*tan(cos(y+phase_y)))
+	del_x = shift_x + int(scale_x*sin(x+phase_x))
+	del_y = shift_y + int(scale_y*cos(y+phase_y))
 
 	print(del_x, del_y)
 
@@ -22,7 +22,16 @@ inc_x, inc_y = 0.01, 0.01
 while True:
 	x += inc_x
 	y += inc_y
-	plotter(x, y, 250, 200, 100, 100, 0, 10, 10, (0,0,255))	
+	plotter(x, y, 
+		shift_x = 250, 
+		shift_y = 200, 
+		scale_x = 200, 
+		scale_y = 100, 
+		phase_x = 100, 
+		phase_y = 10, 
+		radius = 10, 
+		color = (0,0,255)
+	)	
 
 	# a += 0.1
 	# b += 0.1
