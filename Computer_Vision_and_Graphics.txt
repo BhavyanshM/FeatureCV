@@ -1,0 +1,10 @@
+Computer Vision and Graphics
+
+1. Tell me shapes:
+	a. Circle
+
+2. Make some shapes:
+	a. Star
+	b. Pentagon
+	c. Square
+	d. Circle
