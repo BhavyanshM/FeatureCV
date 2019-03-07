@@ -30,8 +30,8 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 global frame
 # ret, frame = cap.read()
 
-width = 800
-height = 600
+width = 640
+height = 480
 
 while True:
 	_, frame = cap.read()
@@ -55,16 +55,18 @@ while True:
 	cv2.line(frame, (int(width/3), 0), (int(width/3), height), (255, 255, 0), 5, 1)
 	cv2.line(frame, (int(2*width/3), 0), (int(2*width/3), height), (255, 255, 0), 5, 1)
 	cv2.line(frame, (0, int(height/3)), (width, int(height/3)), (255, 255, 0), 5, 1)
-	cv2.line(frame, (0, int(height/3)), (width, int(height/3)), (255, 255, 0), 5, 1)
+	cv2.line(frame, (0, int(2*height/3)), (width, int(2*height/3)), (255, 255, 0), 5, 1)
 
+	print(frame.shape)
 
 	cv2.namedWindow("Frame", cv2.WINDOW_NORMAL)
 	cv2.resizeWindow('Frame', width,height)
 	cv2.imshow('Frame', frame)
 
-	cv2.namedWindow("Mask", cv2.WINDOW_NORMAL)
-	cv2.resizeWindow('Mask', width,height)
-	cv2.imshow('Mask', mask)
+	# cv2.namedWindow("Mask", cv2.WINDOW_NORMAL)
+	# cv2.resizeWindow('Mask', width,height)
+	# cv2.imshow('Mask', mask)
+
 	# gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
 	# _, thresh = cv2.threshold(hsv, 250, 255, cv2.THRESH_BINARY_INV)
 	# canny = cv2.Canny(hsv,100,200)
