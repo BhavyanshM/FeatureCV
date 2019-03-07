@@ -57,15 +57,25 @@ while True:
 	cv2.line(frame, (0, int(height/3)), (width, int(height/3)), (255, 255, 0), 5, 1)
 	cv2.line(frame, (0, int(2*height/3)), (width, int(2*height/3)), (255, 255, 0), 5, 1)
 
+	M = cv2.moments(mask)
+	 
+	# calculate x,y coordinate of center
+	if not(M["m00"] == 0): 
+		cX = int(M["m10"] / M["m00"])
+		cY = int(M["m01"] / M["m00"])
+	 
+	# put text and highlight the center
+	cv2.circle(frame, (cX, cY), 10, (255, 255, 255), -1)
+
 	print(frame.shape)
 
 	cv2.namedWindow("Frame", cv2.WINDOW_NORMAL)
 	cv2.resizeWindow('Frame', width,height)
 	cv2.imshow('Frame', frame)
 
-	# cv2.namedWindow("Mask", cv2.WINDOW_NORMAL)
-	# cv2.resizeWindow('Mask', width,height)
-	# cv2.imshow('Mask', mask)
+	cv2.namedWindow("Mask", cv2.WINDOW_NORMAL)
+	cv2.resizeWindow('Mask', width,height)
+	cv2.imshow('Mask', mask)
 
 	# gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
 	# _, thresh = cv2.threshold(hsv, 250, 255, cv2.THRESH_BINARY_INV)
