@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 
-img = cv2.imread("./Chess.JPG")
+img = cv2.imread("./ChessBoard.jpg")
 
 gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
@@ -23,11 +23,16 @@ corners = cv2.cornerSubPix(gray,np.float32(centroids),(5,5),(-1,-1),criteria)
 # Now draw them
 res = np.hstack((centroids,corners))
 res = np.int0(res)
-img[res[:,1],res[:,0]]=[0,0,255]
-img[res[:,3],res[:,2]] = [0,255,0]
+print(centroids.shape, corners.shape)
 
-cv2.imshow(images[i], img)
-cv2.imshow('Result', dst)
+for c in centroids:
+	x,y = (int(c[0]),int(c[1]))
+	img = cv2.circle(img, (x,y), 4, (0,255,255), -1)
+
+
+
+cv2.imshow("Harris Corners", img)
+# cv2.imshow('Result', dst)
 
 code = cv2.waitKeyEx(0)
 cv2.destroyAllWindows()

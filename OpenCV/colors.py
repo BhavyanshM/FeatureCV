@@ -16,6 +16,7 @@ def nothing(x):
 cap = cv2.VideoCapture(0);
 
 cv2.namedWindow('Trackbars')
+cv2.resizeWindow('Trackbars', 1200, 800)
 cv2.createTrackbar('L-H', 'Trackbars', 0, 180, nothing)
 cv2.createTrackbar('L-S', 'Trackbars', 0, 255, nothing)
 cv2.createTrackbar('L-V', 'Trackbars', 0, 255, nothing)
@@ -44,7 +45,7 @@ while True:
 
 	lower_red = np.array([lh, ls, lv])
 	upper_red = np.array([uh, us, uv])
-
+	print(lh, uh, ls, us, lv, uv)
 
 
 	mask = cv2.inRange(hsv, lower_red, upper_red)
