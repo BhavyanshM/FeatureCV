@@ -27,7 +27,7 @@ print(centroids.shape, corners.shape)
 
 for c in centroids:
 	x,y = (int(c[0]),int(c[1]))
-	img = cv2.circle(img, (x,y), 4, (0,255,255), -1)
+	img = cv2.circle(img, (x,y), 4, (30,180,255), -1)
 
 
 

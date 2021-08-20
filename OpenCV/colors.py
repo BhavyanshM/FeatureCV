@@ -1,5 +1,4 @@
 import cv2
-import imutils
 import numpy as np
 
 #func for getting color of click pos
@@ -17,24 +16,34 @@ cap = cv2.VideoCapture(0);
 
 cv2.namedWindow('Trackbars')
 cv2.resizeWindow('Trackbars', 1200, 800)
-cv2.createTrackbar('L-H', 'Trackbars', 0, 180, nothing)
-cv2.createTrackbar('L-S', 'Trackbars', 0, 255, nothing)
-cv2.createTrackbar('L-V', 'Trackbars', 0, 255, nothing)
-cv2.createTrackbar('U-H', 'Trackbars', 180, 180, nothing)
-cv2.createTrackbar('U-S', 'Trackbars', 255, 255, nothing)
-cv2.createTrackbar('U-V', 'Trackbars', 255, 255, nothing)
+cv2.createTrackbar('L-H', 'Trackbars', 9, 255, nothing)
+cv2.createTrackbar('L-S', 'Trackbars', 32, 255, nothing)
+cv2.createTrackbar('L-V', 'Trackbars', 92, 255, nothing)
+cv2.createTrackbar('U-H', 'Trackbars', 23, 255, nothing)
+cv2.createTrackbar('U-S', 'Trackbars', 78, 255, nothing)
+cv2.createTrackbar('U-V', 'Trackbars', 175, 255, nothing)
+
+cv2.namedWindow('Trackbars-Color')
+cv2.resizeWindow('Trackbars-Color', 1200, 800)
+cv2.createTrackbar('L-R', 'Trackbars-Color', 0, 255, nothing)
+cv2.createTrackbar('L-G', 'Trackbars-Color', 0, 255, nothing)
+cv2.createTrackbar('L-B', 'Trackbars-Color', 0, 255, nothing)
+cv2.createTrackbar('U-R', 'Trackbars-Color', 255, 255, nothing)
+cv2.createTrackbar('U-G', 'Trackbars-Color', 255, 255, nothing)
+cv2.createTrackbar('U-B', 'Trackbars-Color', 255, 255, nothing)
 
 font = cv2.FONT_HERSHEY_SIMPLEX
 
-# while True:
-	# cap.set(cv2.CAP_PROP_AUTOFOCUS, 0)
 global frame
-# ret, frame = cap.read()
+frame = cv2.imread("../Images/Ignore/lab_door_01.jpeg")
+
 while True:
-	_, frame = cap.read()
+	# _, frame = cap.read()
 
 	# gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
-	hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
+	hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+
+	# Door: 9 22 33 68 92 173 [8 30 30 69 94 175]
 
 	lh = cv2.getTrackbarPos('L-H', 'Trackbars')
 	uh = cv2.getTrackbarPos('U-H', 'Trackbars')
@@ -43,14 +52,32 @@ while True:
 	lv = cv2.getTrackbarPos('L-V', 'Trackbars')
 	uv = cv2.getTrackbarPos('U-V', 'Trackbars')
 
+	lr = cv2.getTrackbarPos('L-R', 'Trackbars-Color')
+	ur = cv2.getTrackbarPos('U-R', 'Trackbars-Color')
+	lg = cv2.getTrackbarPos('L-G', 'Trackbars-Color')
+	ug = cv2.getTrackbarPos('U-G', 'Trackbars-Color')
+	lb = cv2.getTrackbarPos('L-B', 'Trackbars-Color')
+	ub = cv2.getTrackbarPos('U-B', 'Trackbars-Color')
+
 	lower_red = np.array([lh, ls, lv])
 	upper_red = np.array([uh, us, uv])
 	print(lh, uh, ls, us, lv, uv)
 
-
 	mask = cv2.inRange(hsv, lower_red, upper_red)
 
-	cv2.imshow('Mask', mask)
+	y = np.expand_dims(mask, axis=2)
+	newmask = np.concatenate((y, y, y), axis=2)
+
+	newFrame = newmask * frame
+
+	lower_rgb = np.array([lr,lg,lb])
+	upper_rgb = np.array([ur, ug, ub])
+
+	img = cv2.inRange(newFrame, lower_rgb, upper_rgb)
+
+	cv2.namedWindow('Mask', cv2.WINDOW_NORMAL)
+	cv2.resizeWindow('Mask', mask.shape[1]*2, mask.shape[0]*2)
+	cv2.imshow('Mask', img)
 	# gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
 	# _, thresh = cv2.threshold(hsv, 250, 255, cv2.THRESH_BINARY_INV)
 	# canny = cv2.Canny(hsv,100,200)
